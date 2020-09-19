@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import './App.css';
 
-function App() {
+const SimpleSlider = () => {
+
+  useEffect(() => {
+    console.log('init');
+  }, []);
+
+  let settings = {
+    dots: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    pauseOnHover: false,
+    centerPadding: '150px',
+    variableWidth: true,
+    // useCSS: false,
+    // useTransform: true,
+    infinite: true,
+    // autoplay: true
+  };
+
+
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Slider {...settings}>
+        <div className="card-item">
+          <h3>1</h3>
+        </div>
+        <div className="card-item">
+          <h3>2</h3>
+        </div>
+        <div className="card-item">
+          <h3>3</h3>
+        </div>
+        <div className="card-item">
+          <h3>4</h3>
+        </div>
+        <div className="card-item">
+          <h3>5</h3>
+        </div>
+        <div className="card-item">
+          <h3>6</h3>
+        </div>
+      </Slider>
   );
 }
 
-export default App;
+let a = document.getElementsByClassName('.card-item');
+console.log(a)
+
+export default SimpleSlider;
