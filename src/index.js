@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SimpleSlider from './App';
+import App from './App';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <SimpleSlider />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

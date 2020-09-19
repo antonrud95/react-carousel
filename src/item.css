@@ -1,0 +1,13 @@
+.item-wrapper {
+    height: 200px;
+    background-color: #eee;
+    color: black;
+    
+}
+
+.item-wrapper-opacity {
+    height: 200px;
+    background-color: #eee;
+    color: black;
+    opacity: .3;
+}

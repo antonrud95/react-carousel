@@ -16,3 +16,11 @@
 .slick-slide {
   opacity: .5;
 }
+
+
+.right-ch {
+  display: none;
+}
+.left-ch {
+  display: none;
+}

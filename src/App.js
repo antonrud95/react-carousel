@@ -1,59 +1,64 @@
-import React, {useEffect} from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useState } from 'react';
+import ItemsCarousel from 'react-items-carousel';
 
-import './App.css';
+import CarouselItem from './Item';
 
-const SimpleSlider = () => {
+import './App.css'
+ 
+const App = () => {
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
 
-  useEffect(() => {
-    console.log('init');
-  }, []);
+  const titles = [
+    {id: 1, title: 'First card'},
+    {id: 2, title: 'Second card'},
+    {id: 3, title: 'Third card'},
+    {id: 4, title: 'Fourth card'}
+  ]
 
-  let settings = {
-    dots: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    pauseOnHover: false,
-    centerPadding: '150px',
-    variableWidth: true,
-    // useCSS: false,
-    // useTransform: true,
-    infinite: true,
-    // autoplay: true
+  const changeActiveIndex = index => {
+    if (index >= 0 && index <= titles.length - 1) {
+      setActiveItemIndex(index);
+      console.log(index)
+    }
   };
-
-
 
   
 
+
   return (
-    <Slider {...settings}>
-        <div className="card-item">
-          <h3>1</h3>
-        </div>
-        <div className="card-item">
-          <h3>2</h3>
-        </div>
-        <div className="card-item">
-          <h3>3</h3>
-        </div>
-        <div className="card-item">
-          <h3>4</h3>
-        </div>
-        <div className="card-item">
-          <h3>5</h3>
-        </div>
-        <div className="card-item">
-          <h3>6</h3>
-        </div>
-      </Slider>
+    <div style={{ padding: `0 ${chevronWidth}px` }}>
+      <ItemsCarousel
+        requestToChangeActive={changeActiveIndex}
+        activeItemIndex={activeItemIndex}
+        numberOfCards={2}
+        gutter={20}
+        leftChevron={<button>{'<'}</button>}
+        rightChevron={<button>{'>'}</button>}
+        outsideChevron
+        chevronWidth={chevronWidth}
+        infiniteLoop={true}
+        classes={{
+          rightChevronWrapper: 'right-ch',
+          leftChevronWrapper: 'left-ch',
+        }}
+        
+      >
+        {titles.map((title, index) => {
+          // console.log(index)
+          if (activeItemIndex === index) {
+            return (
+              <CarouselItem title={title.title} className="item-wrapper" key={Date.now()} />
+            );
+          } else {
+            return (
+              <CarouselItem title={title.title} className="item-wrapper-opacity" key={Date.now()} />
+            );
+          }
+        })}  
+      </ItemsCarousel>
+    </div>
   );
-}
+};
 
-let a = document.getElementsByClassName('.card-item');
-console.log(a)
-
-export default SimpleSlider;
+export default App
